@@ -48,7 +48,7 @@ RUN \
   && adduser xs users \
   && mkdir -p \
     /app \
-    /config \S6VERSION
+    /config \S6VERSION \
     /defaults
 
 RUN \
