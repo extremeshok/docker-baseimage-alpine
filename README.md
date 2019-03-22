@@ -1,4 +1,4 @@
-# eXtremeSHOK optimized base Alpine 3.8
+# eXtremeSHOK optimized base Alpine 3.9
 
 # Built with the latest versions of :
 + [Alpine linux](https://alpinelinux.org/)
