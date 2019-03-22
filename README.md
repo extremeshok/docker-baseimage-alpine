@@ -1,6 +1,4 @@
-# eXtremeSHOK optimized base image
-
-Alpine 3.8 , Alpine 3.9
+# eXtremeSHOK optimized base Alpine 3.8
 
 # Built with the latest versions of :
 + [Alpine linux](https://alpinelinux.org/)
@@ -20,6 +18,3 @@ A small syslog add-on for s6-overlay which replaces syslogd.
 
 #### latest versions:
 The latest versions are automatically detected and used, so image is always the latest.
-
-#### tini : https://github.com/krallin/tini
-+ All tini does is spawn a single child (tini is meant to be run in a container), and wait for it to exit all the while reaping zombies and performing signal forwarding.
