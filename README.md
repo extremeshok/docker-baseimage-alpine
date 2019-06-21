@@ -17,4 +17,4 @@ A small syslog add-on for s6-overlay which replaces syslogd.
 ### NOTES:
 
 #### latest versions:
-The latest versions are automatically detected and used, so image is always the latest.
+The latest versions of S6 and socklog are automatically detected and used, so image is always the latest.
