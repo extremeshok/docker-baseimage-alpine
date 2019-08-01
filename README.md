@@ -1,5 +1,7 @@
 # eXtremeSHOK optimized base Alpine 3.10
 
+https://hub.docker.com/r/extremeshok/baseimage-alpine
+
 # Built with the latest versions of :
 + [Alpine linux](https://alpinelinux.org/)
 + [S6 overlay](https://github.com/just-containers/s6-overlay)
