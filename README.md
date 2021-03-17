@@ -1,4 +1,4 @@
-# eXtremeSHOK optimized base Alpine 3.11
+# eXtremeSHOK optimized base Alpine 3.13
 
 https://hub.docker.com/r/extremeshok/baseimage-alpine
 

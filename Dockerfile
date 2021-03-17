@@ -1,4 +1,4 @@
-FROM alpine:3.11 AS BUILD
+FROM alpine:3.13 AS BUILD
 
 LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
