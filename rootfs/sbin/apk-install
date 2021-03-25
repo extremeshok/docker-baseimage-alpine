@@ -1,2 +1,5 @@
-#!/bin/sh
+#!/bin/bash -e
+
+# Install APK
+
 apk add --update --no-cache "$@"
