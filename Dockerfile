@@ -6,6 +6,7 @@ LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
 # build time varbiles
 ARG OVERLAY_ARCH="amd64"
+ENV OVERLAY_ARCH $OVERLAY_ARCH
 
 # environment variables
 ENV PS1="[$(whoami)@$(hostname):$(pwd)]$ "
