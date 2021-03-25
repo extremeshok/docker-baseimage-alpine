@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env bash -e
 
 echo "ARCH: ${OVERLAY_ARCH}"
 

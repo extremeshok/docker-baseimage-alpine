@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env bash -e
 
 #curl -L https://keybase.io/justcontainers/key.asc | gpg --no-tty --batch --import --quiet
 
