@@ -6,9 +6,9 @@ echo "ARCH: ${OVERLAY_ARCH}"
 
 S6_VERSION="$(curl -L --silent "https://api.github.com/repos/just-containers/s6-overlay/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
 echo "Version: ${S6_VERSION}"
-curl -L --silent -o /tmp/s6-overlay.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-${OVERLAY_ARCH}.tar.gz"
-curl -L --silent -o /tmp/s6-overlay.sig "https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-${OVERLAY_ARCH}.tar.gz.sig"
-gpg --no-tty --batch --verify --quiet /tmp/s6-overlay.sig s6-overlay.tar.gz 2> /dev/null
+curl -L --silent -o /tmp/s6-overlay.tar.gz "https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-${OVERLAY_ARCH}.tar.gz" || echo "failed tar.gz download"
+curl -L --silent -o /tmp/s6-overlay.sig "https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/s6-overlay-${OVERLAY_ARCH}.tar.gz.sig" || echo "failed sig download"
+gpg --no-tty --batch --verify --quiet /tmp/s6-overlay.sig s6-overlay.tar.gz 2> /dev/null || echo "failed gpg download"
 tar xfz /tmp/s6-overlay.tar.gz -C /
 echo "Cleanup"
 rm -f /tmp/s6-overlay.tar.gz
