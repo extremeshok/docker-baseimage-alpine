@@ -8,7 +8,7 @@ SOCKLOG_VERSION="$(curl --silent "https://api.github.com/repos/just-containers/s
 echo "Version: ${SOCKLOG_VERSION}"
 curl -L --silent -o /tmp/socklog-overlay.tar.gz "https://github.com/just-containers/socklog-overlay/releases/download/${SOCKLOG_VERSION}/socklog-overlay-${OVERLAY_ARCH}.tar.gz"
 curl -L --silent -o /tmp/socklog-overlay.sig "https://github.com/just-containers/socklog-overlay/releases/download/${SOCKLOG_VERSION}/socklog-overlay-${OVERLAY_ARCH}.tar.gz.sig"
-gpg --no-tty --batch --verify --quiet /tmp/socklog-overlay.sig socklog-overlay.tar.gz 2> /dev/null
+gpg --no-tty --batch --verify --quiet /tmp/socklog-overlay.sig /tmp/socklog-overlay.tar.gz 2> /dev/null
 tar xfz /tmp/socklog-overlay.tar.gz -C /
 echo "Cleanup"
 rm -f /tmp/socklog-overlay.tar.gz
