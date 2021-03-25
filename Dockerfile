@@ -15,12 +15,13 @@ RUN \
   echo "**** install build packages ****" \
   && apk add --update --no-cache --virtual=build-dependencies \
     ca-certificates \
-    curl \
     tar
 
 RUN \
   echo "**** install packages ****" \
   && apk add --update --no-cache \
+  bash \
+  curl \
   shadow
 
 RUN \
