@@ -23,7 +23,6 @@ RUN echo "**** install build packages ****" \
 RUN echo "**** install packages ****" \
   && apk add --update --no-cache \
   sed \
-#  gnupg \
   grep \
   bash \
   curl
@@ -41,9 +40,6 @@ RUN echo "**** install s6 overlay ****" \
 #  && gpg --no-tty --batch --verify /tmp/s6-overlay.sig s6-overlay.tar.gz \
   && tar xfz /tmp/s6-overlay.tar.gz -C / \
   && rm -f /tmp/s6-overlay.tar.gz
-
-  curl -fL https://github.com/just-containers/s6-overlay/releases/download/${S6_VERSION}/${S6_NAME}.sig -o /tmp/${S6_NAME}.sig
-  gpg --no-tty --batch --verify /tmp/${S6_NAME}.sig /tmp/${S6_NAME}
 
 # Addon for S6 to add a small syslog replacement
 RUN echo "**** install socklog overlay ****" \
