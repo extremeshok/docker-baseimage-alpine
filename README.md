@@ -6,6 +6,7 @@ https://hub.docker.com/r/extremeshok/baseimage-alpine
 + [Alpine linux](https://alpinelinux.org/)
 + [S6 overlay](https://github.com/just-containers/s6-overlay)
 + [socklog overlay](https://github.com/just-containers/socklog-overlay)
++  Goss for testing
 
 # Alpine linux
 A security-oriented, lightweight Linux distribution based on musl libc and busybox.
@@ -17,6 +18,8 @@ A process supervisor (aka replaces supervisor.d and tini), chosen over tini (exe
 A small syslog add-on for s6-overlay which replaces syslogd.
 
 ### NOTES:
+
+Hybrid supervisor.d and S6
 
 #### latest versions:
 The latest versions of S6 and socklog are automatically detected and used, so image is always the latest.
