@@ -1,4 +1,4 @@
-FROM alpine:latest AS BUILD
+FROM alpine:latest AS build
 
 LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
@@ -66,6 +66,6 @@ COPY rootfs/ /
 RUN chmod 755 /sbin/apk-install
 
 FROM scratch
-COPY --from=BASE / .
+COPY --from=build / .
 
 ENTRYPOINT ["/init"]
