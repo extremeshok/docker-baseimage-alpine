@@ -2,7 +2,7 @@ FROM alpine:latest AS build
 
 LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
-### Stage - build ###
+### Build - Stage ###
 
 # environment variables
 ENV PS1="[$(whoami)@$(hostname):$(pwd)]$ "
@@ -60,16 +60,7 @@ RUN echo "**** cleanup ****" \
   && rm -rf /tmp/* \
   && rm -rf /build
 
-# add local files
-COPY rootfs/ /
-
-RUN echo "**** setting permissions ****" \
-  && chmod 0755 /sbin/apk-install \
-  && chmod 0755 /usr/bin/with-bigcontenv \
-  && chmod 0755 /start.sh \
-  && chmod 0755 /init.sh
-
-### Stage - Merge ###
+### Merge - Stage ###
 
 FROM scratch
 COPY --from=build / .
@@ -79,6 +70,15 @@ ENV SIGNAL_BUILD_STOP=99
 ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
 ENV S6_KILL_FINISH_MAXTIME=10000
 ENV S6_KILL_GRACETIME=6000
+
+# add local files
+COPY rootfs/ /
+
+RUN echo "**** setting permissions ****" \
+  && chmod 0755 /sbin/apk-install \
+  && chmod 0755 /usr/bin/with-bigcontenv \
+  && chmod 0755 /start.sh \
+  && chmod 0755 /init.sh
 
 RUN goss -g /etc/goss/baseimage.yaml validate
 
