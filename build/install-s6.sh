@@ -1,7 +1,5 @@
 #!/usr/bin/env bash -e
 
-
-
 ARCHITECTURE=""
 case $(uname -m) in
     i386)   ARCHITECTURE="386" ;;

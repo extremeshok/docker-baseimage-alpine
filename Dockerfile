@@ -27,9 +27,6 @@ RUN echo "**** install packages ****" \
 # add install files
 COPY build/ /build
 
-RUN echo "**** import justcontainers key ****" \
-  && curl -L https://keybase.io/justcontainers/key.asc | gpg --no-tty --batch --import --quiet
-
 # S6 for zombie reaping, boot-time coordination, signal transformation/distribution
 # https://github.com/just-containers/s6-overlay
 RUN echo "**** install s6 overlay ****" \

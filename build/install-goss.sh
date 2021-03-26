@@ -1,6 +1,5 @@
 #!/usr/bin/env bash -e
 
-
 ARCHITECTURE=""
 case $(uname -m) in
     i386)   ARCHITECTURE="386" ;;
@@ -12,12 +11,22 @@ esac
 
 echo "ARCH: ${ARCHITECTURE}"
 
-GOSS_VERSION="$(curl --silent "https://api.github.com/repos/aelsabbahy/goss/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
+GOSS_VERSION="$(curl -L --silent "https://api.github.com/repos/aelsabbahy/goss/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
 echo "Version: ${GOSS_VERSION}"
-curl -L --silent -o "/tmp/goss-linux-${ARCHITECTURE}" "https://github.com/aelsabbahy/goss/releases/download/${GOSS_VERSION}/goss-linux-${ARCHITECTURE}"
-curl -L --silent -o /tmp/goss.sha256 "https://github.com/aelsabbahy/goss/releases/download/${GOSS_VERSION}/goss-linux-${ARCHITECTURE}.sha256"
-sha256sum -s -c /tmp/goss.sha256
-mv -f "/tmp/goss-linux-${ARCHITECTURE}" /bin/goss
-echo "Cleanup"
+curl -L --silent -o "/tmp/goss" "https://github.com/aelsabbahy/goss/releases/download/${GOSS_VERSION}/goss-linux-${ARCHITECTURE}"
+GOSS_SHA256="$(curl -L --silent "https://github.com/aelsabbahy/goss/releases/download/${GOSS_VERSION}/goss-linux-${ARCHITECTURE}.sha256" | cut -d" " -f 1)"
+
+# requires 2 spaces
+echo "${GOSS_SHA256}  /tmp/goss" | sha256sum -c -s - 2>&1
+
+mv -f "/tmp/goss" /bin/goss
+
+if [ ! -f "/bin/goss" ]; then
+    echo "ERROR: goss failed"
+    exit 1
+fi
+
 chmod +x /bin/goss
+
+echo "Cleanup"
 rm -rf /tmp/goss.sha256

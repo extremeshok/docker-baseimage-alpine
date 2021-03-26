@@ -13,7 +13,7 @@ echo "ARCH: ${ARCHITECTURE}"
 
 curl -L https://keybase.io/justcontainers/key.asc | gpg --no-tty --batch --import --quiet
 
-SOCKLOG_VERSION="$(curl --silent "https://api.github.com/repos/just-containers/socklog-overlay/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
+SOCKLOG_VERSION="$(curl -L --silent "https://api.github.com/repos/just-containers/socklog-overlay/releases/latest" | grep '"tag_name":' | sed -E 's/.*"([^"]+)".*/\1/')"
 echo "Version: ${SOCKLOG_VERSION}"
 curl -L --silent -o /tmp/socklog-overlay.tar.gz "https://github.com/just-containers/socklog-overlay/releases/download/${SOCKLOG_VERSION}/socklog-overlay-${ARCHITECTURE}.tar.gz"
 curl -L --silent -o /tmp/socklog-overlay.sig "https://github.com/just-containers/socklog-overlay/releases/download/${SOCKLOG_VERSION}/socklog-overlay-${ARCHITECTURE}.tar.gz.sig"
