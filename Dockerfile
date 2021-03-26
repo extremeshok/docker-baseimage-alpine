@@ -2,7 +2,7 @@ FROM alpine:latest AS build
 
 LABEL mantainer="Adrian Kriel <admin@extremeshok.com>" vendor="eXtremeSHOK.com"
 
-### Stage 1 - build ###
+### Stage - build ###
 
 # environment variables
 ENV PS1="[$(whoami)@$(hostname):$(pwd)]$ "
@@ -63,9 +63,26 @@ RUN echo "**** cleanup ****" \
 # add local files
 COPY rootfs/ /
 
-RUN chmod 755 /sbin/apk-install
+RUN echo "**** setting permissions ****" \
+  && chmod 0755 /sbin/apk-install \
+  && chmod 0755 /usr/bin/with-bigcontenv \
+  && chmod 0755 /start.sh \
+  && chmod 0755 /init.sh
+
+### Stage - Merge ###
 
 FROM scratch
 COPY --from=build / .
 
-ENTRYPOINT ["/init"]
+# Used when an init process requests the container to gracefully exit, uses supervisor to maintain long-running processes
+ENV SIGNAL_BUILD_STOP=99
+ENV S6_BEHAVIOUR_IF_STAGE2_FAILS=2
+ENV S6_KILL_FINISH_MAXTIME=10000
+ENV S6_KILL_GRACETIME=6000
+
+RUN goss -g /etc/goss/baseimage.yaml validate
+
+# NOT using s6 init as the entrypoint
+#ENTRYPOINT ["/init"]
+
+CMD ["/bin/bash", "/start.sh"]

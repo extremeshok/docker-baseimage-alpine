@@ -1,0 +1,6 @@
+command:
+  #built-in s6 command, to test
+  s6-true:
+    exit-status: 0
+    stderr: []
+    stdout: []

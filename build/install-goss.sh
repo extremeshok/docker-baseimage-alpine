@@ -26,7 +26,7 @@ if [ ! -f "/bin/goss" ]; then
     exit 1
 fi
 
-chmod +x /bin/goss
+chmod 0755 /bin/goss
 
 echo "Cleanup"
 rm -rf /tmp/goss.sha256
