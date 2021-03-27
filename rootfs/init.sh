@@ -28,6 +28,5 @@ if ls /etc/init.d/*.sh &>/dev/null ; then
   done
 else
   echo "[init] /etc/init.d/ empty"
-  echo "[init] loading fallback /init"
   exit $STATUS
 fi

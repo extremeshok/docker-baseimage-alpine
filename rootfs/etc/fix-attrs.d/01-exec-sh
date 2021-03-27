@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Enforce /*.sh are executable
+
+chmod +x /*.sh
